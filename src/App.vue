@@ -1,32 +1,51 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <a-layout type="flex" justify="center">
+      <a-layout-header>
+        <h1 class="title">
+          <a-icon type="reddit" style="font-size: 2rem" /> Reddit Clone
+        </h1>
+      </a-layout-header>
+      <a-page-header>R/MEME</a-page-header>
+      <a-layout-content style="padding: 1rem">
+        <router-view />
+      </a-layout-content>
+    </a-layout>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style land="scss">
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url("./styles/styles.scss");
+
+.ant-layout-header {
+  background-color: #7dbcea !important;
 }
 
-nav {
-  padding: 30px;
+.title {
+  display: flex;
+  height: 100%;
+  font-size: 1.2rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.ant-page-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./assets/background_image.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.ant-page-header-content {
+  padding: 2rem 0 !important;
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #fff;
 }
 </style>
