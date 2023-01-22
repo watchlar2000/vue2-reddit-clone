@@ -1,11 +1,7 @@
 <template>
   <a-row type="flex" justify="center">
     <a-col :xs="24" :sm="20" :md="16" :lg="14">
-      <a-card
-        v-for="(post, idx) in posts"
-        :key="idx"
-        style="margin-inline: auto; margin-top: 1.5rem"
-      >
+      <a-card v-for="(post, idx) in posts" :key="idx" class="post">
         <a-row type="flex">
           <a-col :span="2" class="upvotes">
             <a-icon type="caret-up" class="pointer" />
@@ -13,7 +9,7 @@
               <template slot="content">
                 {{ post.data.ups }}
               </template>
-              {{ formatUpvotes(post.data.ups) }}
+              {{ formatNumber(post.data.ups) }}
             </a-popover>
             <a-icon type="caret-up" :rotate="180" class="pointer" />
           </a-col>
@@ -22,9 +18,16 @@
               Posted by {{ post.data.author }}
               {{ formatDate(post.data.created) }} ago
             </span>
-            <a-card-meta :title="post.data.title" style="margin-top: 0.05rem" />
+            <h2>{{ post.data.title }}</h2>
             <div style="width: 75%; margin-inline: auto" class="image">
-              <img alt="logo" :src="post.data.url" />
+              <img :src="post.data.url" :alt="post.data.title" />
+            </div>
+            <div class="post-footer">
+              <span class="button pointer">
+                <a-icon type="wechat" />
+                {{ formatNumber(post.data.num_comments) }} Comments
+              </span>
+              <span class="button pointer"> <a-icon type="save" /> Save </span>
             </div>
           </a-col>
         </a-row>
@@ -42,6 +45,7 @@ export default {
   name: "HomeView",
   data() {
     return {
+      subreddit: "r/Memes",
       posts: [],
       pagination: {
         pageSize: 5,
@@ -57,11 +61,12 @@ export default {
     async load() {
       const postsData = await loadPosts();
       this.posts = postsData.data.children;
+      console.log(postsData.data);
     },
     formatDate(utcTime) {
       return formatDistanceStrict(utcTime * 1000, Date.now());
     },
-    formatUpvotes(num) {
+    formatNumber(num) {
       return num > 999
         ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
         : Math.sign(num) * Math.abs(num);
@@ -71,8 +76,10 @@ export default {
 </script>
 
 <style lang="scss">
-.ant-card {
+.post {
   border: 2px solid transparent;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
 
   .image {
     margin-top: 1rem;
@@ -85,7 +92,7 @@ export default {
   }
 }
 
-.ant-card:hover {
+.post:hover {
   border: 2px solid #a2a2a2;
 }
 
@@ -102,6 +109,30 @@ export default {
 
   .anticon {
     font-size: 1.75rem;
+  }
+}
+
+.post-footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.14s linear;
+  }
+
+  .button:hover {
+    background: #ededed;
+  }
+
+  .anticon {
+    font-size: 1.25rem;
   }
 }
 </style>
