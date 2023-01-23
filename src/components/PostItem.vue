@@ -55,7 +55,9 @@ export default {
         : Math.sign(num) * Math.abs(num);
     },
     save() {
-      alert("post successfully saved :) ");
+      alert(
+        "Saved to local storage! P.S. This feature will be implemented later "
+      );
     },
   },
 };

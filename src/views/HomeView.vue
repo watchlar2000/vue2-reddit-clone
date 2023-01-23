@@ -51,6 +51,7 @@ export default {
     async load() {
       const postsData = await loadPosts();
       this.posts = postsData.data.children;
+      console.log(this.posts);
     },
     async loadMorePosts() {
       this.pagination.loading = true;
