@@ -66,7 +66,7 @@ export default {
   methods: {
     async load() {
       const postsData = await loadPosts();
-      this.posts = postsData.data.children;
+      this.posts = this.sortPosts(postsData.data.children, "created");
     },
     async loadMorePosts() {
       this.pagination.loading = true;
@@ -78,16 +78,20 @@ export default {
     sortListByParam(val) {
       this.pagination.pageSize = this.$options.$PAGE_SIZE;
       const { key: sortedParam } = val;
+      const posts = this.posts;
       switch (sortedParam) {
         case "most_upvoted":
-          this.posts.sort((a, b) => b.data.ups - a.data.ups);
+          this.posts = this.sortPosts(posts, "ups");
           break;
         case "most_commented":
-          this.posts.sort((a, b) => b.data.num_comments - a.data.num_comments);
+          this.posts = this.sortPosts(posts, "num_comments");
           break;
         default:
-          this.posts.sort((a, b) => b.data.created - a.data.created);
+          this.posts = this.sortPosts(posts, "created");
       }
+    },
+    sortPosts(currentPosts, param) {
+      return currentPosts.sort((a, b) => b.data[param] - a.data[param]);
     },
   },
   $PAGE_SIZE: 3,
@@ -108,5 +112,3 @@ export default {
   ],
 };
 </script>
-
-<style lang="scss" scoped></style>
