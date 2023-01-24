@@ -1,15 +1,16 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <a-layout
       type="flex"
       justify="center"
       :class="mode === 'light' ? 'light' : 'dark'"
+      class="layout"
     >
       <header-container
         :mode="mode"
         @toggle-mode="toggleMode"
       ></header-container>
-      <a-layout-content style="padding: 1rem">
+      <a-layout-content class="content">
         <router-view></router-view>
       </a-layout-content>
     </a-layout>
@@ -40,7 +41,23 @@ export default {
 <style lang="scss">
 @import url("./styles/styles.scss");
 
-.dark {
-  background: #192734 !important;
+.container {
+  height: 100vh;
+  // background: #f8f8f8 !important;
 }
+
+.layout {
+  min-height: 100vh;
+  background: transparent !important;
+}
+
+.content {
+  padding: 0 1rem;
+}
+
+.dark {
+  background: #1b1b1b !important;
+}
+
+// #1b1b1b
 </style>

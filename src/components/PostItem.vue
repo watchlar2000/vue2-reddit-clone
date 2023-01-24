@@ -67,7 +67,7 @@ export default {
 .post {
   border: 2px solid transparent;
   margin-inline: auto;
-  margin-bottom: 1.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   .image {
     margin-top: 1rem;
@@ -78,10 +78,6 @@ export default {
     color: #7a7a7a;
     font-weight: 700;
   }
-}
-
-.post:hover {
-  border: 2px solid #a2a2a2;
 }
 
 .upvotes {
@@ -112,7 +108,7 @@ export default {
     padding: 0.5rem;
     border-radius: 5px;
     font-weight: 500;
-    transition: all 0.14s linear;
+    transition: all 0.05s linear;
   }
 
   .button:hover {

@@ -8,9 +8,9 @@
       </span>
       Reddit Clone
     </h1>
-    <a-popover>
+    <a-popover placement="bottomLeft">
       <template #content>
-        <span>{{ capitalizeWord }}</span>
+        <span>{{ displayMode }}</span>
       </template>
       <a-switch v-model="checked" style="margin-right: 1rem" />
     </a-popover>
@@ -37,8 +37,8 @@ export default {
     },
   },
   computed: {
-    capitalizeWord() {
-      return this.mode.slice(0, 1).toUpperCase() + this.mode.slice(1);
+    displayMode() {
+      return this.mode === "light" ? "Light mode" : "Dark mode";
     },
   },
 };

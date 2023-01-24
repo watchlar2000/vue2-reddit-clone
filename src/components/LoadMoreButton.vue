@@ -1,9 +1,6 @@
 <template>
-  <a-space
-    style="width: 100%; display: flex; justify-content: center"
-    v-show="shown"
-  >
-    <a-button v-if="loading" type="primary" loading size="large"
+  <a-space style="width: 100%; display: flex; justify-content: center">
+    <a-button v-if="loading" type="outlined" loading size="large"
       >Loading</a-button
     >
     <a-button
@@ -21,11 +18,6 @@
 export default {
   name: "LoadMoreButton",
   props: {
-    shown: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
     disabled: {
       type: Boolean,
       required: true,
