@@ -1,33 +1,25 @@
 <template>
-  <a-row
-    type="flex"
-    justify="center"
-    v-if="isLoadButtonShown"
-    style="margin-top: 2rem"
-  >
-    <a-col :xs="24" :sm="20" :md="16" :lg="14">
-      <post-sort-button
-        @sort="(val) => sortListByParam(val)"
-        :options="$options.$SORT_OPTIONS"
-      ></post-sort-button>
-
-      <posts-list :posts="paginatedList" style="margin-top: 1rem"></posts-list>
-
-      <load-more-button
-        :loading="pagination.loading"
-        :disabled="isPostsQtyGreaterThanMax"
-        @loadPosts="loadMorePosts"
-        style="margin: 1.5rem 0"
-      ></load-more-button>
-    </a-col>
-  </a-row>
+  <content-container v-if="isLoadButtonShown">
+    <post-sort-button
+      @sort="(val) => sortListByParam(val)"
+      :options="$options.$SORT_OPTIONS"
+    ></post-sort-button>
+    <posts-list :posts="paginatedList" style="margin-top: 1rem"></posts-list>
+    <load-more-button
+      :loading="pagination.loading"
+      :disabled="isPostsQtyGreaterThanMax"
+      @loadPosts="loadMorePosts"
+      style="margin: 1.5rem 0"
+    ></load-more-button>
+  </content-container>
 </template>
 
 <script>
-import loadPosts from "@/api";
+import { loadPosts } from "@/api";
 import LoadMoreButton from "@/components/LoadMoreButton.vue";
 import PostsList from "@/components/PostsList.vue";
 import PostSortButton from "@/components/PostSortButton.vue";
+import ContentContainer from "@/components/ContentContainer.vue";
 
 export default {
   name: "HomeView",
@@ -45,9 +37,10 @@ export default {
     PostsList,
     LoadMoreButton,
     PostSortButton,
+    ContentContainer,
   },
   mounted() {
-    this.load();
+    this.loadPosts();
   },
   computed: {
     paginatedList() {
@@ -64,7 +57,7 @@ export default {
     },
   },
   methods: {
-    async load() {
+    async loadPosts() {
       const postsData = await loadPosts();
       this.posts = this.sortPosts(postsData.data.children, "created");
     },

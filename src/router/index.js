@@ -12,7 +12,7 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/post/:id",
+    path: "/post/:id/:title",
     name: "post",
     component: PostView,
   },

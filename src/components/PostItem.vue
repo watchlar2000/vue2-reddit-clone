@@ -5,25 +5,29 @@
         <a-icon type="caret-up" class="pointer" />
         <a-popover placement="left" class="upvotes-data">
           <template slot="content">
-            {{ post.data.ups }}
+            {{ post.ups }}
           </template>
-          {{ formatNumber(post.data.ups) }}
+          {{ formatNumber(post.ups) }}
         </a-popover>
         <a-icon type="caret-up" :rotate="180" class="pointer" />
       </a-col>
       <a-col :span="21" :offset="1" :lg="{ span: 22, offset: 0 }">
         <span>
-          Posted by {{ post.data.author }}
-          {{ formatDate(post.data.created) }} ago
+          Posted by {{ post.author }} {{ formatDate(post.created) }} ago
         </span>
-        <h2>{{ post.data.title }}</h2>
+        <h2 v-if="clickableTitle">
+          <router-link :to="setRouteParams">{{ post.title }}</router-link>
+        </h2>
+        <h2 v-else>
+          {{ post.title }}
+        </h2>
         <div style="width: 75%; margin-inline: auto" class="image">
-          <img :src="post.data.url" :alt="post.data.title" />
+          <img :src="post.url" :alt="post.title" />
         </div>
         <div class="post-footer">
           <span class="button pointer">
             <a-icon type="wechat" />
-            {{ formatNumber(post.data.num_comments) }} Comments
+            {{ formatNumber(post.num_comments) }} Comments
           </span>
           <span class="button pointer" @click="save">
             <a-icon type="save" /> Save
@@ -44,6 +48,10 @@ export default {
       type: Object,
       required: true,
     },
+    clickableTitle: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     formatDate(utcTime) {
@@ -60,11 +68,20 @@ export default {
       );
     },
   },
+  computed: {
+    setRouteParams() {
+      const currentPost = this.post;
+      const id = currentPost.id;
+      const title = currentPost.title.toLowerCase().split(" ").join("_");
+      return `/post/${id}/${title}`;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .post {
+  width: 100%;
   border: 2px solid transparent;
   margin-inline: auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
