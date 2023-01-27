@@ -2,14 +2,12 @@
   <div>
     <content-container v-if="this.post">
       <a-button @click="goBack">Back</a-button>
-      <post-item
-        :post="post"
-        :clickable-title="false"
-        style="margin-top: 1rem"
-      ></post-item>
-      <div style="margin-top: 2rem">
+      <div class="mt-1">
+        <post-item :post="post" :clickable-title="false"></post-item>
+      </div>
+      <div class="mt-2">
         <h2>Comments:</h2>
-        <ul style="margin-top: 1rem">
+        <ul class="mt-1">
           <li v-for="c in comments" :key="c.id">{{ c.data.body }}</li>
         </ul>
       </div>

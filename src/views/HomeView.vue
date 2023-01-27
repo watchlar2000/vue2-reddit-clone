@@ -4,12 +4,12 @@
       @sort="(val) => sortListByParam(val)"
       :options="$options.$SORT_OPTIONS"
     ></post-sort-button>
-    <posts-list :posts="paginatedList" style="margin-top: 1rem"></posts-list>
+    <posts-list :posts="paginatedList" class="mt-1"></posts-list>
     <load-more-button
       :loading="pagination.loading"
       :disabled="isPostsQtyGreaterThanMax"
       @loadPosts="loadMorePosts"
-      style="margin: 1.5rem 0"
+      class="my-15"
     ></load-more-button>
   </content-container>
 </template>

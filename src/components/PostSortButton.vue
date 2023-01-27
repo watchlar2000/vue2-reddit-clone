@@ -4,7 +4,7 @@
     <a-select
       label-in-value
       :default-value="defaultEl"
-      style="width: 150px"
+      class="select"
       @change="sort"
     >
       <a-select-option v-for="(v, idx) in options" :value="v.key" :key="idx">
@@ -35,3 +35,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.select {
+  width: 150px;
+}
+</style>

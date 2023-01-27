@@ -16,12 +16,15 @@
           Posted by {{ post.author }} {{ formatDate(post.created) }} ago
         </span>
         <h2 v-if="clickableTitle">
-          <router-link :to="setRouteParams">{{ post.title }}</router-link>
+          <!-- <router-link :to="setRouteParams">{{ post.title }}</router-link> -->
+          <router-link :to="{ name: 'post', params: setRouteParams }">{{
+            post.title
+          }}</router-link>
         </h2>
         <h2 v-else>
           {{ post.title }}
         </h2>
-        <div style="width: 75%; margin-inline: auto" class="image">
+        <div class="post-image">
           <img :src="post.url" :alt="post.title" />
         </div>
         <div class="post-footer">
@@ -73,7 +76,8 @@ export default {
       const currentPost = this.post;
       const id = currentPost.id;
       const title = currentPost.title.toLowerCase().split(" ").join("_");
-      return `/post/${id}/${title}`;
+      // return `/post/${id}/${title}`;
+      return { id, title };
     },
   },
 };
@@ -86,8 +90,10 @@ export default {
   margin-inline: auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-  .image {
+  &-image {
+    width: 75%;
     margin-top: 1rem;
+    margin-inline: auto;
   }
 
   &-meta-title {

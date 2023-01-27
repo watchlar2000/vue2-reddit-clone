@@ -1,7 +1,5 @@
 <template>
-  <div
-    style="display: flex; align-items: center; justify-content: space-between"
-  >
+  <div class="header-nav">
     <h1 class="header-title">
       <span class="icon">
         <a-icon type="reddit" />
@@ -12,7 +10,7 @@
       <template #content>
         <span>{{ displayMode }}</span>
       </template>
-      <a-switch v-model="checked" style="margin-right: 1rem" />
+      <a-switch v-model="checked" class="mr-1" />
     </a-popover>
   </div>
 </template>
@@ -43,3 +41,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>

@@ -9,14 +9,9 @@
             be passed from one individual to another by nongenetic means,
             especially imitation.
           </p>
-          <a-row style="margin-top: 1rem" type="flex" justify="space-between">
+          <a-row class="mt-1" type="flex" justify="space-between">
             <a-col :xs="6" :md="5">
-              <a-statistic
-                title="Refugees"
-                :value="`23.8m`"
-                style="margin-right: 50px"
-              >
-              </a-statistic>
+              <a-statistic title="Refugees" :value="`23.8m`"> </a-statistic>
             </a-col>
             <a-col :xs="6" :md="5">
               <a-statistic

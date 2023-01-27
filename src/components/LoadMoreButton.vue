@@ -1,5 +1,5 @@
 <template>
-  <a-space style="width: 100%; display: flex; justify-content: center">
+  <a-space class="load-more-btn">
     <a-button v-if="loading" type="outlined" loading size="large"
       >Loading</a-button
     >
@@ -31,3 +31,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.load-more-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+</style>
