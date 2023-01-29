@@ -58,6 +58,4 @@ export default {
 .dark {
   background: #1b1b1b !important;
 }
-
-// #1b1b1b
 </style>

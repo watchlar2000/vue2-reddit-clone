@@ -10,7 +10,9 @@
       <template #content>
         <span>{{ displayMode }}</span>
       </template>
-      <a-switch v-model="checked" class="mr-1" />
+      <div class="mr-1">
+        <a-switch v-model="checked" />
+      </div>
     </a-popover>
   </div>
 </template>

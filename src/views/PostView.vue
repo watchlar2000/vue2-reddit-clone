@@ -5,18 +5,17 @@
       <div class="mt-1">
         <post-item :post="post" :clickable-title="false"></post-item>
       </div>
-      <div class="mt-2">
+      <!-- <div class="mt-2">
         <h2>Comments:</h2>
         <ul class="mt-1">
           <li v-for="c in comments" :key="c.id">{{ c.data.body }}</li>
         </ul>
-      </div>
+      </div> -->
     </content-container>
   </div>
 </template>
 
 <script>
-import { loadPostComments } from "../api";
 import PostItem from "@/components/PostItem.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 
@@ -24,32 +23,27 @@ export default {
   name: "PostView",
   data() {
     return {
-      post: null,
       comments: null,
     };
   },
   mounted() {
-    this.loadComments();
+    if (this.post === null) {
+      this.$store.dispatch("posts/getPost", this.$route.params);
+    }
   },
   components: {
     PostItem,
     ContentContainer,
   },
   methods: {
-    async loadComments() {
-      const postData = await loadPostComments(this.getRouteParams);
-      const [post, comments] = postData;
-      this.post = post.data.children[0].data;
-      this.comments = comments.data.children;
-      console.log(this.comments);
-    },
     goBack() {
-      this.$router.go(-1);
+      this.$router.push({ name: "home" });
     },
   },
   computed: {
-    getRouteParams() {
-      return this.$route.params;
+    post() {
+      const { id } = this.$route.params;
+      return this.$store.getters["posts/post"](id);
     },
   },
 };

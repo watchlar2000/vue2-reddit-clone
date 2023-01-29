@@ -4,6 +4,7 @@ import App from "./App.vue";
 import "ant-design-vue/dist/antd.css";
 import "@/styles/globals.css";
 import router from "./router";
+import store from "./store";
 
 Vue.use(Antd);
 
@@ -11,5 +12,12 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
+
+// console.log(store);
+// store.dispatch("posts/getAllPosts");
+// console.log(store.getters["posts/posts"]);
+// store.commit("getAllPosts");
+// console.log(store.state.posts);

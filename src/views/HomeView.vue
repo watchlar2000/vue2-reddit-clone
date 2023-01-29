@@ -2,7 +2,7 @@
   <content-container v-if="isLoadButtonShown">
     <post-sort-button
       @sort="(val) => sortListByParam(val)"
-      :options="$options.$SORT_OPTIONS"
+      :options="sortingOptions"
     ></post-sort-button>
     <posts-list :posts="paginatedList" class="mt-1"></posts-list>
     <load-more-button
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { loadPosts } from "@/api";
+// import { mapState, mapActions } from 'vuex'
 import LoadMoreButton from "@/components/LoadMoreButton.vue";
 import PostsList from "@/components/PostsList.vue";
 import PostSortButton from "@/components/PostSortButton.vue";
@@ -26,7 +26,6 @@ export default {
   data() {
     return {
       subreddit: "r/Memes",
-      posts: [],
       pagination: {
         pageSize: this.$options.$PAGE_SIZE,
         loading: false,
@@ -40,27 +39,47 @@ export default {
     ContentContainer,
   },
   mounted() {
-    this.loadPosts();
+    this.$store.dispatch("posts/getAllPosts");
   },
   computed: {
+    sortingOptions() {
+      return this.$store.getters["posts/sortingOptions"];
+    },
+    maxPostsQty() {
+      return this.$store.getters["posts/postsQty"];
+    },
+    posts() {
+      return this.$store.getters["posts/posts"];
+    },
     paginatedList() {
       return this.posts.slice(0, this.pagination.pageSize);
     },
-
+    // postsByUpvotes() {
+    //   return this.$store.getters["posts/postsByDate"];
+    // },
+    // postsByComments() {
+    //   return this.$store.getters["posts/postsByDate"];
+    // },
     isPostsQtyGreaterThanMax() {
-      return this.paginatedList.length >= this.$options.$MAX_POSTS_QTY
-        ? true
-        : false;
+      return this.paginatedList.length >= this.maxPostsQty ? true : false;
     },
     isLoadButtonShown() {
       return this.posts.length !== 0;
+      // return true;
     },
   },
   methods: {
-    async loadPosts() {
-      const postsData = await loadPosts();
-      this.posts = this.sortPosts(postsData.data.children, "created");
-    },
+    // getPosts(sortingParam = undefined) {
+    //   if (sortingParam) {
+    //     console.log(sortingParam);
+    //   }
+
+    //   return this.$store.getters["posts/posts"];
+    // },
+    // async loadPosts() {
+    //   const postsData = await loadPosts();
+    //   this.posts = this.sortPosts(postsData.data.children, "created");
+    // },
     async loadMorePosts() {
       this.pagination.loading = true;
       setTimeout(() => {
@@ -88,20 +107,19 @@ export default {
     },
   },
   $PAGE_SIZE: 3,
-  $MAX_POSTS_QTY: 25,
-  $SORT_OPTIONS: [
-    {
-      key: "default",
-      value: "Date posted",
-    },
-    {
-      key: "most_upvoted",
-      value: "Most upvoted",
-    },
-    {
-      key: "most_commented",
-      value: "Most Commented",
-    },
-  ],
+  // $SORT_OPTIONS: [
+  //   {
+  //     key: "default",
+  //     value: "Date posted",
+  //   },
+  //   {
+  //     key: "most_upvoted",
+  //     value: "Most upvoted",
+  //   },
+  //   {
+  //     key: "most_commented",
+  //     value: "Most Commented",
+  //   },
+  // ],
 };
 </script>

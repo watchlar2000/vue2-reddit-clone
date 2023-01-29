@@ -7,10 +7,10 @@ const loadPosts = async () => {
   return fetch(LOAD_POST_URL).then((response) => response.json());
 };
 
-const loadPostComments = async (post) => {
+const loadPostData = async (post) => {
   const { id, title } = post;
   const LOAD_POST_COMMENTS_URL = `${BASE_URL}/comments/${id}/${title}/.json`;
   return fetch(LOAD_POST_COMMENTS_URL).then((response) => response.json());
 };
 
-export { loadPosts, loadPostComments };
+export { loadPosts, loadPostData };
