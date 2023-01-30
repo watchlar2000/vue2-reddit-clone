@@ -1,23 +1,5 @@
 import { loadPosts, loadPostData } from "@/api";
-// import { sortPosts } from "@/utils";
-
-const SORTING_OPTIONS = [
-  {
-    key: "default",
-    param: "created",
-    value: "Date posted",
-  },
-  {
-    key: "most_upvoted",
-    param: "ups",
-    value: "Most upvoted",
-  },
-  {
-    key: "most_commented",
-    param: "num_comments",
-    value: "Most Commented",
-  },
-];
+import { SORTING_OPTIONS, customSortDescending } from "@/utils";
 
 const state = () => ({
   posts: [],
@@ -31,11 +13,8 @@ const state = () => ({
 
 // getters
 const getters = {
-  postsQty: (state) => state.posts.length,
-  posts: (state) => {
-    return state.posts;
-  },
-  post: (state) => (id) => {
+  maxPostsQty: (state) => state.posts.length,
+  getPost: (state) => (id) => {
     const isPost = state.posts.find((post) => post.data.id === id);
 
     if (isPost === undefined) {
@@ -44,14 +23,9 @@ const getters = {
 
     return isPost.data;
   },
-  isLoading: (state) => {
-    return state.loading;
-  },
-  sortingOptions: (state) => state.sortingOptions,
   currentSortingOption: (state) => {
     return state.currentSortingOption;
   },
-  page: (state) => state.page,
 };
 
 // actions
@@ -62,11 +36,9 @@ const actions = {
     if (userSortingParam === null) {
       loadPosts().then((postsData) => {
         const sortingParam = state.currentSortingOption.param;
-        const posts = postsData.data.children.sort(
-          (a, b) => b.data[sortingParam] - a.data[sortingParam]
-        );
-
-        commit("SET_POSTS", posts);
+        const postsArr = postsData.data.children;
+        const sortedPostsArr = customSortDescending(postsArr, sortingParam);
+        commit("SET_POSTS", sortedPostsArr);
         commit("SET_LOADING", false);
       });
       return;
@@ -75,13 +47,8 @@ const actions = {
     commit("SORT_POSTS", userSortingParam);
     commit("SET_LOADING", false);
   },
-  async getPost({ commit, state }, { id, title }) {
+  async setPost({ commit }, { id, title }) {
     commit("SET_LOADING", true);
-
-    if (state.post && state.post.id === id) {
-      return;
-    }
-
     commit("RESET_CURRENT_POST");
     loadPostData({ id, title }).then((postData) => {
       const post = postData[0].data.children[0].data;
@@ -103,9 +70,8 @@ const mutations = {
     state.posts = posts;
   },
   SORT_POSTS(state, param) {
-    const sortedPosts = state.posts.sort(
-      (a, b) => b.data[param] - a.data[param]
-    );
+    const postsArr = state.posts;
+    const sortedPosts = customSortDescending(postsArr, param);
     state.posts = sortedPosts;
   },
   SET_POST(state, post) {

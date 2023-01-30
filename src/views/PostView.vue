@@ -1,9 +1,9 @@
 <template>
   <div>
-    <content-container v-if="!loadingPost && this.post !== null">
+    <content-container v-if="!loading && this.post !== null">
       <a-button @click="goBack">Back</a-button>
       <div class="mt-1">
-        <post-item :post="post" :clickable-title="false"></post-item>
+        <post-item :post="getPostData()" :clickable-title="false"></post-item>
       </div>
       <div class="mt-2">
         <h2>Comments:</h2>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 import PostItem from "@/components/PostItem.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 
@@ -29,9 +30,7 @@ export default {
     };
   },
   mounted() {
-    if (this.post === null) {
-      this.$store.dispatch("posts/getPost", this.$route.params);
-    }
+    this.getPostData();
   },
   components: {
     PostItem,
@@ -41,14 +40,23 @@ export default {
     goBack() {
       this.$router.push({ name: "home" });
     },
+    getPostData() {
+      const isPost = this.post;
+
+      if (isPost === null) {
+        this.$store.dispatch("posts/setPost", this.$route.params);
+        return;
+      }
+
+      return isPost;
+    },
   },
   computed: {
+    ...mapState("posts", ["loading"]),
+    ...mapGetters("posts", ["getPost"]),
     post() {
       const { id } = this.$route.params;
-      return this.$store.getters["posts/post"](id);
-    },
-    loadingPost() {
-      return this.$store.getters["posts/isLoading"];
+      return this.getPost(id);
     },
   },
 };
