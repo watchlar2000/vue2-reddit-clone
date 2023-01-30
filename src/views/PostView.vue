@@ -1,6 +1,6 @@
 <template>
   <div>
-    <content-container v-if="!loadingPost">
+    <content-container v-if="!loadingPost && this.post !== null">
       <a-button @click="goBack">Back</a-button>
       <div class="mt-1">
         <post-item :post="post" :clickable-title="false"></post-item>
