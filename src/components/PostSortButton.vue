@@ -7,7 +7,11 @@
       class="select"
       @change="sort"
     >
-      <a-select-option v-for="(v, idx) in options" :value="v.key" :key="idx">
+      <a-select-option
+        v-for="(v, idx) in options"
+        :value="JSON.stringify(v)"
+        :key="idx"
+      >
         {{ v.value }}
       </a-select-option>
     </a-select>
@@ -25,7 +29,8 @@ export default {
   },
   computed: {
     defaultEl() {
-      return { key: this.options[0].key };
+      const defautVal = this.$store.getters["posts/currentSortingOption"].value;
+      return { key: defautVal };
     },
   },
   methods: {

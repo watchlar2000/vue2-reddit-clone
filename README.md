@@ -5,7 +5,7 @@
 - [x] Get rid of the inline 'style' attr in the components' templates.
 - [x] Use named routes.
 - [ ] Create 404 page.
-- [ ] Implement Vuex.
+- [х] Implement Vuex.
 - [ ] Get to know Vue i18n plugin.
 - [ ] Implement Vue i18n in the application.
 - [ ] Update dark mode feature (use css vars?).

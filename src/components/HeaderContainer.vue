@@ -1,6 +1,10 @@
 <template>
   <a-layout-header :class="mode">
-    <header-nav :mode="mode" @toggle-mode="$emit('toggle-mode')"></header-nav>
+    <header-nav
+      :mode="mode"
+      @toggle-mode="$emit('toggle-mode')"
+      class="header-nav"
+    ></header-nav>
     <header-affix></header-affix>
     <header-description></header-description>
   </a-layout-header>
@@ -84,13 +88,8 @@ export default {
   width: 100%;
 }
 
-.header-title,
-.subreddit-subtitle {
-  padding: 0 1.5rem;
-}
-
 .ant-collapse-header {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
