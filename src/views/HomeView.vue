@@ -1,5 +1,5 @@
 <template>
-  <content-container v-if="!loadingPosts">
+  <content-container v-if="!loading">
     <post-sort-button
       @sort="(val) => sortListByParam(val)"
       :options="sortingOptions"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-// import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from "vuex";
 import LoadMoreButton from "@/components/LoadMoreButton.vue";
 import PostsList from "@/components/PostsList.vue";
 import PostSortButton from "@/components/PostSortButton.vue";
@@ -31,7 +31,6 @@ export default {
         pageSize: this.$options.$POSTS_PER_PAGE,
         loading: false,
       },
-      loading: false,
     };
   },
   components: {
@@ -46,18 +45,8 @@ export default {
     }
   },
   computed: {
-    sortingOptions() {
-      return this.$store.getters["posts/sortingOptions"];
-    },
-    maxPostsQty() {
-      return this.$store.getters["posts/postsQty"];
-    },
-    posts() {
-      return this.$store.getters["posts/posts"];
-    },
-    loadingPosts() {
-      return this.$store.getters["posts/isLoading"];
-    },
+    ...mapState("posts", ["posts", "loading", "sortingOptions", "page"]),
+    ...mapGetters("posts", ["maxPostsQty"]),
     isPostsQtyGreaterThanMax() {
       return this.paginatedList.length >= this.maxPostsQty ? true : false;
     },
@@ -66,25 +55,25 @@ export default {
     },
   },
   methods: {
+    ...mapActions("posts", ["getAllPosts", "addPage", "updateCurrentSortingOpt"]),
     paginatedList() {
-      const page = this.$store.getters["posts/page"];
-      const postsPerPage = page * this.pagination.pageSize;
+      const postsPerPage = this.page * this.pagination.pageSize;
       return this.posts.slice(0, postsPerPage);
     },
     loadPosts(sortingParam) {
-      this.$store.dispatch("posts/getAllPosts", sortingParam);
+      this.getAllPosts(sortingParam);
     },
     loadMorePosts() {
       this.pagination.loading = true;
       setTimeout(() => {
-        this.$store.dispatch("posts/addPage");
+        this.addPage();
         this.pagination.loading = false;
       }, 2000);
     },
     sortListByParam(val) {
       const sortingOpt = JSON.parse(val.key);
       const { param: userSortingParam } = sortingOpt;
-      this.$store.dispatch("posts/updateCurrentSortingOpt", sortingOpt);
+      this.updateCurrentSortingOpt(sortingOpt);
       this.loadPosts(userSortingParam);
     },
   },
