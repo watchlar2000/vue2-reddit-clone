@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "PostSortButton",
   props: {
@@ -28,8 +30,9 @@ export default {
     },
   },
   computed: {
+    ...mapState("posts", ["currentSortingOption"]),
     defaultEl() {
-      const defautVal = this.$store.getters["posts/currentSortingOption"].value;
+      const defautVal = this.currentSortingOption.value;
       return { key: defautVal };
     },
   },

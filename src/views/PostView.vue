@@ -1,7 +1,7 @@
 <template>
   <div>
     <content-container v-if="!loading && this.post !== null">
-      <a-button @click="goBack">Back</a-button>
+      <a-button @click="goBack" class="back-btn">Back</a-button>
       <div class="mt-1">
         <post-item :post="getPostData()" :clickable-title="false"></post-item>
       </div>
@@ -38,7 +38,9 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push({ name: "home" });
+      // this.$router.push({ name: "home" });
+      // console.log(this.$router.go(-1));
+      this.$router.go(-1);
     },
     getPostData() {
       const isPost = this.post;
@@ -61,3 +63,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.back-btn {
+  align-self: start;
+}
+</style>

@@ -4,7 +4,6 @@ import { SORTING_OPTIONS, customSortDescending } from "@/utils";
 const state = () => ({
   posts: [],
   post: null,
-  page: 1,
   loading: false,
   error: null,
   currentSortingOption: SORTING_OPTIONS[0], // default
@@ -22,9 +21,6 @@ const getters = {
     }
 
     return isPost.data;
-  },
-  currentSortingOption: (state) => {
-    return state.currentSortingOption;
   },
 };
 
@@ -59,9 +55,6 @@ const actions = {
   updateCurrentSortingOpt({ commit }, newSortingOpt) {
     commit("UPDATE_SORTING_OPTION", newSortingOpt);
   },
-  addPage({ commit }) {
-    commit("ADD_PAGE");
-  },
 };
 
 // mutations
@@ -85,9 +78,6 @@ const mutations = {
   },
   UPDATE_SORTING_OPTION(state, newSortingOpt) {
     state.currentSortingOption = newSortingOpt;
-  },
-  ADD_PAGE(state) {
-    state.page += 1;
   },
 };
 
