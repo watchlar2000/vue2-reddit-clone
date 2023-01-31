@@ -75,12 +75,13 @@ export default {
       pagination.loading = true;
       setTimeout(() => {
         const nextPage = this.page + 1;
-        this.$router.push({ query: { page: nextPage } });
+        this.routerPushQuery(nextPage);
         this.scrollToPost();
         pagination.loading = false;
       }, 2000);
     },
     sortListByParam(val) {
+      this.routerPushQuery(1);
       const sortingOpt = JSON.parse(val.key);
       const { param: userSortingParam } = sortingOpt;
       this.updateCurrentSortingOpt(sortingOpt);
@@ -97,6 +98,9 @@ export default {
           behavior: "smooth",
         });
       });
+    },
+    routerPushQuery(page) {
+      this.$router.push({ query: { page } });
     },
   },
   $POSTS_PER_PAGE: 3,

@@ -15,11 +15,13 @@
       </a-layout-content>
       <a-layout-footer>Footer</a-layout-footer>
     </a-layout>
+    <back-top-button />
   </div>
 </template>
 
 <script>
-import HeaderContainer from "./components/HeaderContainer.vue";
+import HeaderContainer from "@/components/HeaderContainer.vue";
+import BackTopButton from "@/components/BackTopButton.vue";
 
 export default {
   name: "App",
@@ -30,6 +32,7 @@ export default {
   },
   components: {
     HeaderContainer,
+    BackTopButton,
   },
   methods: {
     toggleMode() {
