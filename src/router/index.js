@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import PostView from "../views/PostView.vue";
 import SavedPostsView from "../views/SavedPostsView.vue";
 import AboutView from "../views/AboutView.vue";
+import NotFoundView from "../views/NotFoundView.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/post/:id/:title",
     name: "post",
     component: PostView,
+  },
+  {
+    path: "*",
+    name: "not-found",
+    component: NotFoundView,
   },
 ];
 

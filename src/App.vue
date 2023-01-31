@@ -13,6 +13,7 @@
       <a-layout-content class="content">
         <router-view></router-view>
       </a-layout-content>
+      <a-layout-footer>Footer</a-layout-footer>
     </a-layout>
   </div>
 </template>
@@ -43,7 +44,6 @@ export default {
 
 .container {
   height: 100vh;
-  // background: #f8f8f8 !important;
 }
 
 .layout {
@@ -51,8 +51,14 @@ export default {
   background: transparent !important;
 }
 
+.ant-layout {
+  min-height: 100% !important;
+}
+
 .content {
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .dark {
