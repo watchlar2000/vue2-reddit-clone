@@ -34,6 +34,9 @@ export default {
     HeaderContainer,
     BackTopButton,
   },
+  mounted() {
+    console.log(this.$i18n);
+  },
   methods: {
     toggleMode() {
       this.mode = this.mode === "light" ? "dark" : "light";

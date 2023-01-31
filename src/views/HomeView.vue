@@ -9,7 +9,7 @@
       :loading="pagination.loading"
       :disabled="isPostsQtyGreaterThanMax"
       @loadPosts="loadMorePosts"
-      class="my-15"
+      class="mt-15"
     ></load-more-button>
   </content-container>
   <content-container v-else>Loading...</content-container>

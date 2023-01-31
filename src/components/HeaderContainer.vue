@@ -71,10 +71,11 @@ export default {
   background-color: #fbfeff !important;
   height: min-content !important;
   padding: 0 !important;
+  line-height: 120% !important;
 }
 
 .subreddit-title {
-  padding: 2.5rem 0;
+  padding: 5rem 0;
   font-size: 3.5rem;
   color: #fff;
   text-shadow: 2px 4px 1px #231f1e;

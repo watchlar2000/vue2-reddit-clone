@@ -6,8 +6,8 @@
 - [x] Use named routes.
 - [x] Create 404 page.
 - [x] Implement Vuex.
-- [ ] Get to know Vue i18n plugin.
-- [ ] Implement Vue i18n in the application.
+- [x] Get to know Vue i18n plugin.
+- [x] Implement Vue i18n in the application.
 - [ ] Update dark mode feature (use css vars?).
 - [x] Display preloaders when fetching the data from an API.
 - [ ] LocalStorage to keep liked posts?

@@ -7,7 +7,7 @@
         </span>
         Reddit Clone
       </h1>
-      <a-popover placement="bottomLeft">
+      <a-popover placement="left">
         <template #content>
           <span>{{ displayMode }}</span>
         </template>
@@ -16,17 +16,29 @@
         </div>
       </a-popover>
     </div>
-    <div class="header-nav">
-      <ul class="header-nav__items">
+    <div class="nav">
+      <ul class="nav__items">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/my_saved_posts">Saved posts</router-link></li>
         <li><router-link to="/about">About</router-link></li>
       </ul>
+      <div class="salute">
+        <div class="salute-message">
+          <span>{{ $t("message") }}</span>
+          <img
+            src="https://www.svgrepo.com/show/18911/ukraine.svg"
+            alt="ukrainian_flag"
+          />
+        </div>
+        <locale-switcher />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import LocaleSwitcher from "./LocaleSwitcher.vue";
+
 export default {
   name: "HeaderNav",
   props: {
@@ -34,6 +46,9 @@ export default {
       type: String,
       required: true,
     },
+  },
+  components: {
+    LocaleSwitcher,
   },
   data() {
     return {
@@ -55,7 +70,7 @@ export default {
 
 <style lang="scss" scoped>
 .header-top {
-  padding: 0 1.25rem;
+  padding: 1rem 1.25rem;
   .logo {
     display: flex;
     align-items: center;
@@ -63,7 +78,11 @@ export default {
   }
 }
 
-.header-nav {
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   &__items {
     display: flex;
     gap: 1.5rem;
@@ -77,6 +96,22 @@ export default {
         color: rgb(255, 69, 0);
       }
     }
+  }
+}
+
+.salute {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &-message {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  img {
+    height: 1rem;
+    width: auto;
   }
 }
 </style>
