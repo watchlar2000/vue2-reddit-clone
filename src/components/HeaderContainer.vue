@@ -1,10 +1,6 @@
 <template>
-  <a-layout-header :class="mode">
-    <header-nav
-      :mode="mode"
-      @toggle-mode="$emit('toggle-mode')"
-      class="header-nav"
-    ></header-nav>
+  <a-layout-header>
+    <header-nav class="header-nav"></header-nav>
     <header-affix></header-affix>
     <header-description></header-description>
   </a-layout-header>
@@ -17,12 +13,6 @@ import HeaderDescription from "./HeaderDescription.vue";
 
 export default {
   name: "HeaderContainer",
-  props: {
-    mode: {
-      type: String,
-      required: true,
-    },
-  },
   components: {
     HeaderNav,
     HeaderAffix,

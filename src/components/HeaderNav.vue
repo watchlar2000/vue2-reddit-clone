@@ -7,14 +7,10 @@
         </span>
         Reddit Clone
       </h1>
-      <a-popover placement="left">
-        <template #content>
-          <span>{{ displayMode }}</span>
-        </template>
-        <div>
-          <a-switch v-model="checked" />
-        </div>
-      </a-popover>
+      <div class="mode-toggle">
+        <span>{{ displayMode }}</span>
+        <a-switch v-model="checked" />
+      </div>
     </div>
     <div class="nav">
       <ul class="nav__items">
@@ -27,14 +23,10 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "HeaderNav",
-  props: {
-    mode: {
-      type: String,
-      required: true,
-    },
-  },
   data() {
     return {
       checked: false,
@@ -42,13 +34,17 @@ export default {
   },
   watch: {
     checked() {
-      this.$emit("toggle-mode");
+      this.toggleDarkMode();
     },
   },
   computed: {
+    ...mapState("ui", ["isDark"]),
     displayMode() {
-      return this.mode === "light" ? "Light mode" : "Dark mode";
+      return this.isDark ? "Night" : "Day";
     },
+  },
+  methods: {
+    ...mapActions("ui", ["toggleDarkMode"]),
   },
 };
 </script>
@@ -60,6 +56,16 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .mode-toggle {
+    display: flex;
+    align-content: center;
+    gap: 0.5rem;
+
+    span {
+      font-weight: 600;
+    }
   }
 }
 

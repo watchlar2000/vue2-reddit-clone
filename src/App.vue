@@ -6,10 +6,7 @@
       :class="mode === 'light' ? 'light' : 'dark'"
       class="layout"
     >
-      <header-container
-        :mode="mode"
-        @toggle-mode="toggleMode"
-      ></header-container>
+      <header-container></header-container>
       <a-layout-content class="content">
         <router-view></router-view>
       </a-layout-content>
@@ -40,7 +37,7 @@ export default {
   },
   methods: {
     toggleMode() {
-      this.mode = this.mode === "light" ? "dark" : "light";
+      // this.mode = this.mode === "light" ? "dark" : "light";
     },
   },
 };
