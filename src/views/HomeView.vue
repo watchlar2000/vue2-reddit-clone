@@ -7,7 +7,7 @@
     <posts-list ref="posts" :posts="paginatedList()" class="mt-1"></posts-list>
     <load-more-button
       :loading="pagination.loading"
-      :disabled="isPostsQtyGreaterThanMax"
+      :disabled="pagination.disabled"
       @loadPosts="loadMorePosts"
       class="mt-15"
     ></load-more-button>
@@ -31,6 +31,7 @@ export default {
       pagination: {
         pageSize: this.$options.$POSTS_PER_PAGE,
         loading: false,
+        disabled: false,
       },
     };
   },
@@ -49,9 +50,6 @@ export default {
   computed: {
     ...mapState("posts", ["posts", "loading", "sortingOptions"]),
     ...mapGetters("posts", ["maxPostsQty"]),
-    isPostsQtyGreaterThanMax() {
-      return this.paginatedList.length >= this.maxPostsQty ? true : false;
-    },
     isLoadButtonShown() {
       return this.posts.length !== 0;
     },
@@ -65,6 +63,8 @@ export default {
     paginatedList() {
       const { pageSize } = this.pagination;
       const postsPerPage = this.page * pageSize;
+      this.pagination.disabled =
+        postsPerPage >= this.maxPostsQty ? true : false;
       return this.posts.slice(0, postsPerPage);
     },
     loadPosts(sortingParam) {
@@ -78,7 +78,7 @@ export default {
         this.routerPushQuery(nextPage);
         this.scrollToPost();
         pagination.loading = false;
-      }, 2000);
+      }, 500);
     },
     sortListByParam(val) {
       this.routerPushQuery(1);
@@ -103,6 +103,6 @@ export default {
       this.$router.push({ query: { page } });
     },
   },
-  $POSTS_PER_PAGE: 3,
+  $POSTS_PER_PAGE: 5,
 };
 </script>
