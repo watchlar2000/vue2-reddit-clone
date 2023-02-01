@@ -2,7 +2,7 @@
   <a-collapse>
     <a-collapse-panel key="1" header="r/Memes the original since 2008">
       <a-row type="flex" justify="center">
-        <a-col :md="14">
+        <a-col :md="16">
           <p>
             Memes! A way of describing cultural information being shared. An
             element of a culture or system of behavior that may be considered to

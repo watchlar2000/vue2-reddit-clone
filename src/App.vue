@@ -13,7 +13,9 @@
       <a-layout-content class="content">
         <router-view></router-view>
       </a-layout-content>
-      <a-layout-footer>Footer</a-layout-footer>
+      <a-layout-footer>
+        <footer-item />
+      </a-layout-footer>
     </a-layout>
     <back-top-button />
   </div>
@@ -22,6 +24,7 @@
 <script>
 import HeaderContainer from "@/components/HeaderContainer.vue";
 import BackTopButton from "@/components/BackTopButton.vue";
+import FooterItem from "@/components/FooterItem.vue";
 
 export default {
   name: "App",
@@ -33,9 +36,7 @@ export default {
   components: {
     HeaderContainer,
     BackTopButton,
-  },
-  mounted() {
-    console.log(this.$i18n);
+    FooterItem,
   },
   methods: {
     toggleMode() {
