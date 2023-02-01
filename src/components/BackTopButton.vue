@@ -10,10 +10,10 @@ export default {
 
 <style>
 .ant-back-top-content {
-  background: rgba(255, 69, 0, 0.5);
+  background: var(--primary-color-50) !important;
 }
 
 .ant-back-top-content:hover {
-  background: rgba(255, 69, 0, 1);
+  background: var(--primary-color) !important;
 }
 </style>

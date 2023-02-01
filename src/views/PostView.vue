@@ -6,7 +6,7 @@
         <post-item :post="getPostData()" :clickable-title="false"></post-item>
       </div>
       <div class="mt-2">
-        <h2>Comments:</h2>
+        <h2 class="comments-title">Comments:</h2>
         <p class="mt-1">Comment section is going to be here...</p>
         <!-- <ul class="mt-1">
           <li v-for="c in comments" :key="c.id">{{ c.data.body }}</li>
@@ -38,8 +38,6 @@ export default {
   },
   methods: {
     goBack() {
-      // this.$router.push({ name: "home" });
-      // console.log(this.$router.go(-1));
       this.$router.go(-1);
     },
     getPostData() {
@@ -67,5 +65,11 @@ export default {
 <style lang="scss" scoped>
 .back-btn {
   align-self: start;
+  background: var(--bg-color);
+  color: var(--secondary-color);
+}
+
+.comments-title {
+  color: var(--secondary-color);
 }
 </style>

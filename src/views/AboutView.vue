@@ -62,6 +62,10 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
+
+  h2 {
+    color: var(--heading-color);
+  }
 }
 
 .wrapper {

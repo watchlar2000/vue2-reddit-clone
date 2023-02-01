@@ -1,3 +1,28 @@
+:root {
+  --primary-color: #ff4500;
+  --primary-color-50: #ff440080;
+  --primary-color-20: #ff440041;
+  --secondary-color: #5c5c5c;
+  --tertiary-color: #fafafa;
+  --font-color: #252525;
+  --bg-color: #fbfeff;
+  --bg-color-secondary: #424242;
+  --bg-color-tertiary: #f1f1f1;
+  --heading-color: #464646;
+}
+
+[data-theme="dark"] {
+  --primary-color: #ff4500;
+  --primary-color-50: #ff4400b0;
+  --secondary-color: #bdbdbd;
+  --tertiary-color: #2e2e2e;
+  --font-color: #f3ffff;
+  --bg-color: #202020;
+  --bg-color-secondary: #303030;
+  --bg-color-tertiary: #373737;
+  --heading-color: #529de2;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -24,4 +49,69 @@
 
 .mr-1 {
   margin-right: 1rem;
+}
+
+// Ant Design Styles
+.ant-switch-checked {
+  background-color: var(--primary-color-50) !important;
+}
+
+.ant-switch-loading-icon,
+.ant-switch::after {
+  background-color: var(--tertiary-color) !important;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  color: var(--secondary-color) !important;
+}
+
+.ant-collapse-content {
+  border-top: none !important;
+  background-color: var(--bg-color-tertiary) !important;
+  color: var(--secondary-color) !important;
+}
+
+.ant-collapse {
+  background-color: var(--tertiary-color) !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.ant-collapse,
+.ant-statistic-title,
+.ant-statistic-content {
+  color: var(--secondary-color) !important;
+}
+
+.ant-collapse > .ant-collapse-item {
+  border-bottom: none !important;
+}
+
+.ant-select-selection {
+  color: var(--secondary-color);
+  border: 1px solid #adadad !important;
+  background: var(--bg-color) !important;
+}
+
+.ant-select-arrow {
+  color: var(--secondary-color) !important;
+}
+
+.ant-select-dropdown {
+  background: var(--bg-color) !important;
+}
+
+.ant-select-dropdown-menu-item {
+  color: var(--secondary-color) !important;
+}
+
+.ant-select-dropdown-menu-item-active:not(
+    .ant-select-dropdown-menu-item-disabled
+  ) {
+  background-color: var(--primary-color-20) !important;
+}
+
+.ant-card {
+  color: var(--secondary-color) !important;
+  background-color: var(--bg-color-tertiary) !important;
 }

@@ -21,6 +21,7 @@ export default {
 <style lang="scss" scoped>
 .footer {
   text-align: center;
+  color: var(--secondary-color) !important;
 
   span {
     font-weight: 600;

@@ -15,13 +15,12 @@
         <span>
           Posted by {{ post.author }} {{ formatDate(post.created) }} ago
         </span>
-        <h2 v-if="clickableTitle">
-          <!-- <router-link :to="setRouteParams">{{ post.title }}</router-link> -->
+        <h2 v-if="clickableTitle" class="post-title">
           <router-link :to="{ name: 'post', params: setRouteParams }">{{
             post.title
           }}</router-link>
         </h2>
-        <h2 v-else>
+        <h2 v-else class="post-title">
           {{ post.title }}
         </h2>
         <div class="post-image">
@@ -88,7 +87,6 @@ export default {
   width: 100%;
   border: 2px solid transparent;
   margin-inline: auto;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   &-image {
     width: 75%;
@@ -100,6 +98,10 @@ export default {
     font-size: 1.5rem;
     color: #7a7a7a;
     font-weight: 700;
+  }
+
+  &-title {
+    color: var(--heading-color) !important;
   }
 }
 

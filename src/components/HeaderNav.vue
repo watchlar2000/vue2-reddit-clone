@@ -50,21 +50,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-top {
-  padding: 1rem 1.25rem 0;
-  .logo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.header {
+  &-title {
+    color: var(--font-color);
   }
 
-  .mode-toggle {
-    display: flex;
-    align-content: center;
-    gap: 0.5rem;
+  &-top {
+    padding: 1rem 1.25rem 0;
 
-    span {
-      font-weight: 600;
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mode-toggle {
+      display: flex;
+      align-content: center;
+      gap: 0.5rem;
+
+      span {
+        font-weight: 600;
+        color: var(--secondary-color);
+      }
     }
   }
 }
@@ -77,6 +85,7 @@ export default {
   &__items {
     display: flex;
     gap: 1.5rem;
+    color: var(--secondary-color);
 
     li {
       font-size: 1rem;
@@ -91,7 +100,7 @@ export default {
   }
 
   .router-link-exact-active {
-    color: rgb(255, 69, 0);
+    color: var(--primary-color);
   }
 }
 </style>

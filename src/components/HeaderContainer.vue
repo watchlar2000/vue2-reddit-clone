@@ -22,43 +22,8 @@ export default {
 </script>
 
 <style lang="scss">
-.dark {
-  background: #2c2c2c !important;
-
-  .ant-collapse {
-    border: 1px solid #4f4f4f !important;
-    background: #2c2c2c !important;
-  }
-
-  .ant-collapse-header {
-    background: #2c2c2c !important;
-  }
-
-  .ant-collapse > .ant-collapse-item {
-    border-bottom: 1px solid #4f4f4f !important;
-  }
-
-  .ant-collapse-content {
-    background: #414141 !important;
-    color: #f3f3f3 !important;
-    border-top: 1px solid #4f4f4f !important;
-  }
-
-  .ant-page-header-content {
-    background-color: #3d3d3d !important;
-    color: #f3f3f3 !important;
-  }
-
-  h1,
-  .ant-collapse-header,
-  .ant-statistic-title,
-  .ant-statistic-content {
-    color: #f3f3f3 !important;
-  }
-}
-
 .ant-layout-header {
-  background-color: #fbfeff !important;
+  background-color: var(--bg-color) !important;
   height: min-content !important;
   padding: 0 !important;
   line-height: 150% !important;
@@ -96,7 +61,7 @@ export default {
     font-size: 1.5rem;
     width: 40px;
     height: 40px;
-    background: rgb(255, 69, 0);
+    background: var(--primary-color);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -107,8 +72,5 @@ export default {
 .ant-page-header-content {
   padding: 2rem 0 !important;
   margin: 0;
-  font-size: 3rem;
-  font-weight: 600;
-  color: #fff;
 }
 </style>

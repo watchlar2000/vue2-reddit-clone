@@ -1,11 +1,6 @@
 <template>
-  <div id="app" class="container">
-    <a-layout
-      type="flex"
-      justify="center"
-      :class="mode === 'light' ? 'light' : 'dark'"
-      class="layout"
-    >
+  <div id="app" class="container" :class="isDarkMode">
+    <a-layout type="flex" justify="center" class="layout">
       <header-container></header-container>
       <a-layout-content class="content">
         <router-view></router-view>
@@ -19,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import HeaderContainer from "@/components/HeaderContainer.vue";
 import BackTopButton from "@/components/BackTopButton.vue";
 import FooterItem from "@/components/FooterItem.vue";
@@ -27,7 +23,7 @@ export default {
   name: "App",
   data() {
     return {
-      mode: "light",
+      // root: null,
     };
   },
   components: {
@@ -35,9 +31,18 @@ export default {
     BackTopButton,
     FooterItem,
   },
-  methods: {
-    toggleMode() {
-      // this.mode = this.mode === "light" ? "dark" : "light";
+  computed: {
+    ...mapState("ui", ["isDark"]),
+    isDarkMode() {
+      console.log(this.isDark);
+      return this.isDark ? "dark" : "";
+    },
+  },
+  watch: {
+    isDark() {
+      const root = document.documentElement;
+      const isDarkMode = this.isDarkMode ? "dark" : "light";
+      console.log(root.setAttribute("data-theme", isDarkMode));
     },
   },
 };
@@ -63,9 +68,10 @@ export default {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
+  background: var(--bg-color);
 }
 
-.dark {
-  background: #1b1b1b !important;
+.ant-layout-footer {
+  background: var(--tertiary-color) !important;
 }
 </style>

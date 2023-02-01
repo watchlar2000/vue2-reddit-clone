@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Sort By:
+  <div class="sort">
+    <span>Sort By:</span>
     <a-select
       label-in-value
       :default-value="defaultEl"
@@ -47,5 +47,11 @@ export default {
 <style lang="scss" scoped>
 .select {
   width: 150px;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>
