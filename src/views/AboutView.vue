@@ -11,27 +11,37 @@
       <p>
         {{ $t("aboutView.paragraph2") }}
       </p>
+      <p>
+        <a href="https://www.reddit.com/r/memes/" target="_blank">{{
+          $t("aboutView.note")
+        }}</a>
+      </p>
+      <p>
+        {{ $t("aboutView.contacts") }}
+      </p>
       <ul class="contacts">
         <li>
-          <a href="https://github.com/watchlar2000" target="_blank">Github</a>
+          <a href="https://github.com/watchlar2000" target="_blank"
+            ><a-icon type="github" class="icon"
+          /></a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/sergii-koch/" target="_blank"
-            >LinkedIn</a
-          >
+            ><a-icon type="linkedin" class="icon"
+          /></a>
         </li>
         <li>
-          <a href="mailto:sergii.koch@gmail.com" target="_blank">Email</a>
+          <a href="mailto:sergii.koch@gmail.com" target="_blank"
+            ><a-icon type="mail" class="icon"
+          /></a>
         </li>
         <li>
           <a href="https://www.instagram.com/watchlar2000/" target="_blank"
-            >Instagram</a
-          >
+            ><a-icon type="instagram" class="icon"
+          /></a>
         </li>
       </ul>
     </div>
-
-    <!-- <a-image :width="200" src="../assets/ukraine.svg" /> -->
   </content-container>
 </template>
 
@@ -54,8 +64,7 @@ export default {
   justify-content: space-between;
 }
 
-.wrapper,
-.contacts {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -64,5 +73,14 @@ export default {
     line-height: 140%;
     font-size: 1rem;
   }
+
+  .icon {
+    font-size: 1.25rem;
+  }
+}
+
+.contacts {
+  display: flex;
+  gap: 1rem;
 }
 </style>

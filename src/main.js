@@ -17,9 +17,3 @@ new Vue({
   i18n,
   render: (h) => h(App),
 }).$mount("#app");
-
-// console.log(store);
-// store.dispatch("posts/getAllPosts");
-// console.log(store.getters["posts/posts"]);
-// store.commit("getAllPosts");
-// console.log(store.state.posts);
