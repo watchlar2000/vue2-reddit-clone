@@ -137,7 +137,7 @@ export default {
   }
 
   .button:hover {
-    background: #ededed;
+    background: var(--tertiary-color);
   }
 
   .anticon {

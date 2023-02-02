@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container" :class="isDarkMode">
+  <div id="app" class="container">
     <a-layout type="flex" justify="center" class="layout">
       <header-container></header-container>
       <a-layout-content class="content">
@@ -21,11 +21,6 @@ import FooterItem from "@/components/FooterItem.vue";
 
 export default {
   name: "App",
-  data() {
-    return {
-      // root: null,
-    };
-  },
   components: {
     HeaderContainer,
     BackTopButton,
@@ -34,7 +29,6 @@ export default {
   computed: {
     ...mapState("ui", ["isDark"]),
     isDarkMode() {
-      console.log(this.isDark);
       return this.isDark ? "dark" : "";
     },
   },
