@@ -8,7 +8,7 @@ const messages = {
     aboutView: {
       header: "Hello!",
       paragraph1:
-        "My name`s Sergii. I live in Kyiv, Ukraine and my dream to become a front-end developer.",
+        "My name`s Sergii. I live in Kyiv, Ukraine and my dream is to become a front-end developer.",
       paragraph2:
         "To reach my goal, I started diving into VueJS framework. I found it very attractive to build a project from scratch which would help me understand how this framework works. I used Ant Design Vue to enrich my application with UI components along with Reddit API which provides live data. Feel free to play around.",
       note: "Link to Memes Reddit community.",
