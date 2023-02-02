@@ -1,6 +1,6 @@
 <template>
   <div class="sort">
-    <span>Sort By:</span>
+    <span v-if="isTextShown">Sort By:</span>
     <a-select
       label-in-value
       :default-value="defaultEl"
@@ -19,20 +19,21 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
-  name: "PostSortButton",
+  name: "SelectButton",
   props: {
     options: {
       type: Array,
       required: true,
     },
+    isTextShown: {
+      default: true,
+    },
   },
   computed: {
-    ...mapState("posts", ["currentSortingOption"]),
     defaultEl() {
-      const defautVal = this.currentSortingOption.value;
+      const defaultOpt = this.options.find((o) => o.key === "default");
+      const defautVal = defaultOpt.value;
       return { key: defautVal };
     },
   },

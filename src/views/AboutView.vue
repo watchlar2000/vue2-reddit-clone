@@ -3,7 +3,11 @@
     <div class="wrapper">
       <div class="header">
         <h2>{{ $t("aboutView.header") }}</h2>
-        <locale-switcher />
+        <select-button
+          :options="localeOptions"
+          :isTextShown="false"
+          @sort="(val) => setLocale(val)"
+        ></select-button>
       </div>
       <p>
         {{ $t("aboutView.paragraph1") }}
@@ -47,20 +51,44 @@
 
 <script>
 import ContentContainer from "@/components/ContentContainer.vue";
-import LocaleSwitcher from "../components/LocaleSwitcher.vue";
+import SelectButton from "../components/SelectButton.vue";
 
 export default {
   name: "AboutView",
   components: {
     ContentContainer,
-    LocaleSwitcher,
+    SelectButton,
   },
+  computed: {
+    localeOptions() {
+      return this.$options.$LOCALE_OPTIONS;
+    },
+  },
+  methods: {
+    setLocale(val) {
+      const { locale } = JSON.parse(val.key);
+      this.$i18n.locale = locale;
+    },
+  },
+  $LOCALE_OPTIONS: [
+    {
+      key: "default",
+      locale: "en",
+      value: "English",
+    },
+    {
+      key: "ukrainian",
+      locale: "ua",
+      value: "Ukrainian",
+    },
+  ],
 };
 </script>
 
 <style lang="scss" scoped>
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   h2 {

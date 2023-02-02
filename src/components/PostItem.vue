@@ -75,7 +75,6 @@ export default {
       const currentPost = this.post;
       const id = currentPost.id;
       const title = currentPost.title.toLowerCase().split(" ").join("_");
-      // return `/post/${id}/${title}`;
       return { id, title };
     },
   },

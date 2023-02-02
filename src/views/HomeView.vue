@@ -1,9 +1,9 @@
 <template>
   <content-container v-if="!loading">
-    <post-sort-button
+    <select-button
       @sort="(val) => sortListByParam(val)"
       :options="sortingOptions"
-    ></post-sort-button>
+    ></select-button>
     <posts-list ref="posts" :posts="paginatedList()" class="mt-1"></posts-list>
     <load-more-button
       :loading="pagination.loading"
@@ -20,7 +20,7 @@ import { nextTick } from "vue";
 import { mapState, mapGetters, mapActions } from "vuex";
 import LoadMoreButton from "@/components/LoadMoreButton.vue";
 import PostsList from "@/components/PostsList.vue";
-import PostSortButton from "@/components/PostSortButton.vue";
+import SelectButton from "@/components/SelectButton.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 
 export default {
@@ -38,7 +38,7 @@ export default {
   components: {
     PostsList,
     LoadMoreButton,
-    PostSortButton,
+    SelectButton,
     ContentContainer,
   },
   mounted() {
