@@ -3,12 +3,7 @@
     <a-button v-if="loading" type="outlined" loading size="large"
       >Loading</a-button
     >
-    <a-button
-      v-else
-      @click="$emit('loadPosts')"
-      type="primary"
-      size="large"
-      :disabled="disabled"
+    <a-button v-else type="primary" size="large" :disabled="disabled"
       >Load more</a-button
     >
   </a-space>

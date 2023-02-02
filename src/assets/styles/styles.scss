@@ -111,7 +111,37 @@
   background-color: var(--primary-color-20) !important;
 }
 
+.ant-select-dropdown-menu-item-selected {
+  background-color: var(--primary-color-50) !important;
+}
+
 .ant-card {
   color: var(--secondary-color) !important;
   background-color: var(--bg-color-tertiary) !important;
+}
+
+.ant-btn-primary-disabled,
+.ant-btn-primary.disabled,
+.ant-btn-primary[disabled],
+.ant-btn-primary-disabled:hover,
+.ant-btn-primary.disabled:hover,
+.ant-btn-primary[disabled]:hover,
+.ant-btn-primary-disabled:focus,
+.ant-btn-primary.disabled:focus,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary-disabled:active,
+.ant-btn-primary.disabled:active,
+.ant-btn-primary[disabled]:active,
+.ant-btn-primary-disabled.active,
+.ant-btn-primary.disabled.active,
+.ant-btn-primary[disabled].active {
+  background-color: var(--primary-color-20) !important;
+  color: var(--secondary-color) !important;
+}
+
+.ant-btn.ant-btn-loading:not(.ant-btn-circle):not(.ant-btn-circle-outline):not(
+    .ant-btn-icon-only
+  ) {
+  background-color: var(--primary-color) !important;
+  color: #f1f1f1 !important;
 }

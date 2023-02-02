@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("./styles/styles.scss");
+@import url("./assets/styles/styles.scss");
 
 .container {
   height: 100vh;

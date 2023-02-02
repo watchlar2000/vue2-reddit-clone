@@ -8,7 +8,7 @@
     <load-more-button
       :loading="pagination.loading"
       :disabled="pagination.disabled"
-      @loadPosts="loadMorePosts"
+      @click.native="loadMorePosts"
       class="mt-15"
     ></load-more-button>
   </content-container>
