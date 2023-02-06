@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("./assets/styles/styles.scss");
+@import url("./assets/styles/index.scss");
 
 .container {
   height: 100vh;
@@ -61,7 +61,6 @@ export default {
 .content {
   padding: 0 1rem;
   display: flex;
-  flex-direction: column;
   background: var(--bg-color);
 }
 

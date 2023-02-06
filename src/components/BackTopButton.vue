@@ -9,6 +9,10 @@ export default {
 </script>
 
 <style>
+.ant-back-top {
+  right: 1rem !important;
+}
+
 .ant-back-top-content {
   background: var(--primary-color-50) !important;
 }

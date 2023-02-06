@@ -13,7 +13,7 @@ const messages = {
         "To reach my goal, I started diving into VueJS framework. I found it very attractive to build a project from scratch which would help me understand how this framework works. I used Ant Design Vue to enrich my application with UI components along with Reddit API which provides live data. Feel free to play around.",
       note: "Link to Memes Reddit community.",
       contacts:
-        "I'll leave my contacts down below so you would like to give a feedback or just say hi.",
+        "I'll leave my contacts down below in case you would like to give a feedback or just say hi.",
       message: "Glory to Ukraine!",
     },
   },
@@ -25,8 +25,7 @@ const messages = {
       paragraph2:
         "Щоб досягнути своєї цілі, я почав вивчати фрейморк VueJS. Мене дуже зацікавила ідея створити пет-проєкт з нуля. Це - найкращий спосіб закріпити знання, отримані з документації, книжок та ютуба. В цьому проєкті були використані Ant Design Vue для створення UI компонентів та Reddit API як джерело данних. Переходьте на головну сторінку, щоб отримати порцію гарного настрою від мемасиків.",
       note: "Посилання на оригінал.",
-      contacts:
-        "Ось мої контакти на випадок, якщо захочете залишити фідбек чи просто привітатися.",
+      contacts: "Ось мої контакти на випадок, якщо захочете залишити фідбек чи просто привітатися.",
       message: "Слава Україні!",
     },
   },

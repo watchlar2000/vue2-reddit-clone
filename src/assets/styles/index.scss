@@ -1,27 +1,9 @@
-:root {
-  --primary-color: #ff4500;
-  --primary-color-50: #ff440080;
-  --primary-color-20: #ff440041;
-  --secondary-color: #5c5c5c;
-  --tertiary-color: #fafafa;
-  --font-color: #252525;
-  --bg-color: #fbfeff;
-  --bg-color-secondary: #424242;
-  --bg-color-tertiary: #eceaea;
-  --heading-color: #464646;
-}
+/* Ant Design Vue */
+@import "ant-design-vue/dist/antd.css";
 
-[data-theme="dark"] {
-  --primary-color: #ff4500;
-  --primary-color-50: #ff4400b0;
-  --secondary-color: #bdbdbd;
-  --tertiary-color: #2e2e2e;
-  --font-color: #f3ffff;
-  --bg-color: #202020;
-  --bg-color-secondary: #303030;
-  --bg-color-tertiary: #373737;
-  --heading-color: #529de2;
-}
+/* Custom styles */
+@import "./_variables.scss";
+@import "./_globals.scss";
 
 .pointer {
   cursor: pointer;

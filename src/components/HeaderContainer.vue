@@ -37,7 +37,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/background_image.png");
+  background-image: url("../assets/img/background_image.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -5,12 +5,12 @@
       :options="sortingOptions"
     ></select-button>
     <posts-list ref="posts" :posts="paginatedList()" class="mt-1"></posts-list>
-    <load-more-button
+    <posts-load-more-button
       :loading="pagination.loading"
       :disabled="pagination.disabled"
       @click.native="loadMorePosts"
       class="mt-15"
-    ></load-more-button>
+    ></posts-load-more-button>
   </content-container>
   <content-container v-else>Loading...</content-container>
 </template>
@@ -18,7 +18,7 @@
 <script>
 import { nextTick } from "vue";
 import { mapState, mapGetters, mapActions } from "vuex";
-import LoadMoreButton from "@/components/LoadMoreButton.vue";
+import PostsLoadMoreButton from "@/components/PostsLoadMoreButton.vue";
 import PostsList from "@/components/PostsList.vue";
 import SelectButton from "@/components/SelectButton.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
@@ -37,7 +37,7 @@ export default {
   },
   components: {
     PostsList,
-    LoadMoreButton,
+    PostsLoadMoreButton,
     SelectButton,
     ContentContainer,
   },

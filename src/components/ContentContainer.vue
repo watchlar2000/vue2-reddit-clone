@@ -15,10 +15,12 @@ export default {
 <style lang="scss" scoped>
 .content {
   flex: 1;
+
   color: var(--secondary-color) !important;
   background: transparent;
 
   &-col {
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
   }

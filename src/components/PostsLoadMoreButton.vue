@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "LoadMoreButton",
+  name: "PostsLoadMoreButton",
   props: {
     disabled: {
       type: Boolean,
