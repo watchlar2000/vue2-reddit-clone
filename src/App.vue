@@ -60,7 +60,6 @@ export default {
 
 .content {
   padding: 0 1rem;
-  display: flex;
   background: var(--bg-color);
 }
 

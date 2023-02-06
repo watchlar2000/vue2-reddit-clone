@@ -1,16 +1,25 @@
 <template>
   <content-container v-if="!loading">
-    <select-button
-      @sort="(val) => sortListByParam(val)"
-      :options="sortingOptions"
-    ></select-button>
-    <posts-list ref="posts" :posts="paginatedList()" class="mt-1"></posts-list>
-    <posts-load-more-button
-      :loading="pagination.loading"
-      :disabled="pagination.disabled"
-      @click.native="loadMorePosts"
-      class="mt-15"
-    ></posts-load-more-button>
+    <div v-if="!error">
+      <select-button
+        @sort="(val) => sortListByParam(val)"
+        :options="sortingOptions"
+      ></select-button>
+      <posts-list
+        ref="posts"
+        :posts="paginatedList()"
+        class="mt-1"
+      ></posts-list>
+      <posts-load-more-button
+        :loading="pagination.loading"
+        :disabled="pagination.disabled"
+        @click.native="loadMorePosts"
+        class="mt-15"
+      ></posts-load-more-button>
+    </div>
+    <div v-else>
+      {{ error }}
+    </div>
   </content-container>
   <content-container v-else>Loading...</content-container>
 </template>
@@ -33,6 +42,7 @@ export default {
         loading: false,
         disabled: false,
       },
+      error: null,
     };
   },
   components: {
@@ -46,7 +56,6 @@ export default {
       this.loadPosts();
     }
   },
-
   computed: {
     ...mapState("posts", ["posts", "loading", "sortingOptions"]),
     ...mapGetters("posts", ["maxPostsQty"]),
@@ -67,8 +76,18 @@ export default {
         postsPerPage >= this.maxPostsQty ? true : false;
       return this.posts.slice(0, postsPerPage);
     },
-    loadPosts(sortingParam) {
-      this.getAllPosts(sortingParam);
+    async loadPosts(sortingParam) {
+      this.resetError();
+      try {
+        console.log("start fetching");
+        const postsData = await this.getAllPosts(sortingParam);
+        if (!postsData) throw new Error("Something went wrong...");
+      } catch (e) {
+        this.resetError(e.message);
+      }
+    },
+    resetError(val = null) {
+      this.error = val;
     },
     loadMorePosts() {
       const pagination = this.pagination;

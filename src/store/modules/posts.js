@@ -30,14 +30,13 @@ const actions = {
     commit("SET_LOADING", true);
 
     if (userSortingParam === null) {
-      loadPosts().then((postsData) => {
-        const sortingParam = state.currentSortingOption.param;
-        const postsArr = postsData.data.children;
-        const sortedPostsArr = customSortDescending(postsArr, sortingParam);
-        commit("SET_POSTS", sortedPostsArr);
-        commit("SET_LOADING", false);
-      });
-      return;
+      const postsData = await loadPosts();
+      const sortingParam = state.currentSortingOption.param;
+      const postsArr = postsData.data.children;
+      const sortedPostsArr = customSortDescending(postsArr, sortingParam);
+      commit("SET_POSTS", sortedPostsArr);
+      commit("SET_LOADING", false);
+      return postsData;
     }
 
     commit("SORT_POSTS", userSortingParam);
@@ -46,11 +45,10 @@ const actions = {
   async setPost({ commit }, { id, title }) {
     commit("SET_LOADING", true);
     commit("RESET_CURRENT_POST");
-    loadPostData({ id, title }).then((postData) => {
-      const post = postData[0].data.children[0].data;
-      commit("SET_LOADING", false);
-      commit("SET_POST", post);
-    });
+    const postData = await loadPostData({ id, title });
+    const post = postData[0].data.children[0].data;
+    commit("SET_LOADING", false);
+    commit("SET_POST", post);
   },
   updateCurrentSortingOpt({ commit }, newSortingOpt) {
     commit("UPDATE_SORTING_OPTION", newSortingOpt);
